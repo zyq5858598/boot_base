@@ -1,0 +1,35 @@
+.gradle
+gradle
+*devLoca
+gradlew*
+classes
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+*.diff
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.epoch
+*.lck
+*.log
+out/
+
+### NetBeans ###
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+/bin/
