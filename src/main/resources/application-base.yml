@@ -9,3 +9,9 @@ logging:
       console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
       file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file: "log/server.log"
+swagger2:
+  basePackage: "com.ljwm"
+  authorization: "Authorization"
+  title: "本文档的标题，请在配置文件中替换掉swagger2.title变量，修改本处的值"
+  description: "本文档的描述，请在配置文件中替换掉swagger2.description变量，修改本处的值"
+  version: "本文档的版本，请在配置文件中替换掉swagger2.version变量，修改本处的值"
