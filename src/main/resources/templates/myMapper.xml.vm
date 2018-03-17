@@ -33,6 +33,7 @@
     ${field.name},
 #end
 #foreach($field in ${table.fields})
+      $velocityCount
      #if($velocityCount != 1),#end ${field.name}
 #end
 
