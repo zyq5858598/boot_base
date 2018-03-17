@@ -1,6 +1,7 @@
 package com.ljwm.bootbase.security;
 
 
+import cn.hutool.crypto.SecureUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -33,5 +34,15 @@ public class SecurityKit {
     return currentUser() == null ? null : currentUser().getId();
   }
 
+  /**
+   * md5加密封装
+   *
+   * @param password
+   * @param salt
+   * @return
+   */
+  public static String passwordMD5(String password, String salt) {
+    return SecureUtil.md5(SecureUtil.md5(password) + salt);
+  }
 
 }
