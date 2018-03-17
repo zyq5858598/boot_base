@@ -14,23 +14,23 @@ import lombok.Data;
 @Builder
 public class GeneratorConfig {
 
-  private String authorName = "User";             // 作者名: 默认: User
+  private String authorName = "User";                   // 作者名: 默认: User
 
-  private String prefix = "t_";                   // 表名前缀: 默认: t_
+  private String prefix = "t_";                         // 表名前缀: 默认: t_
 
-  private String path = PathKit.getProjectPath(); // 生成文件src之前的路径: 默认项目根路径
+  private String path = PathKit.getProjectPath() + "/"; // 生成文件src之前的路径: 默认项目根路径
 
-  private String[] tables;                        // 要生成的表名: 必传参数
+  private String[] tables;                              // 要生成的表名: 必传参数
 
-  private String url;                             // JDBC数据库URL: 必传参数
+  private String url;                                   // JDBC数据库URL: 必传参数
 
-  private String password;                        // JDBC数据库密码: 必传参数
+  private String password;                              // JDBC数据库密码: 必传参数
 
-  private String username;                        // JDBC数据库用户名: 必传参数
+  private String username;                              // JDBC数据库用户名: 必传参数
 
-  private String basePackage;                     // 项目的基本包名，如:com.ljwm.asmshop : 必传参数
+  private String basePackage;                           // 项目的基本包名，如:com.ljwm.asmshop : 必传参数
 
-  private Boolean created = false;                // 建造还是更新: 建造会创建Mapper，更新只更新Model和XML
+  private Boolean created = false;                      // 建造还是更新: 建造会创建Mapper，更新只更新Model和XML
 
   /**
    * 测试配置构造是否规范

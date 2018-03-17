@@ -78,7 +78,7 @@ public class MyGenerator extends AutoGenerator {
 
           }
         }.setFileOutConfigList(Lists.newArrayList(
-          new FileOutConfig("/templates/mapper.xml.vm") {
+          new FileOutConfig("/templates/myMapper.xml.vm") {
             // 自定义输出文件目录
             @Override
             public String outputFile(TableInfo tableInfo) {
