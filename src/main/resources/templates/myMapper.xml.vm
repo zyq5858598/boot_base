@@ -32,7 +32,7 @@
 #foreach($field in ${table.commonFields})
     ${field.name},
 #end
-        ${table.fieldNames}
+        ${table.fields}
     </sql>
 
 #end
