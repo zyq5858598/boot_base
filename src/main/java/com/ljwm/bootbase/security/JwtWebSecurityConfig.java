@@ -113,7 +113,6 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
     log.debug("Configure web security");
     String[] frees = new String[]{
       "/**/favicon.ico",
-      "/socket/**",
       "/swagger-ui.html/**",
       "/swagger-resources/**",
       "/v2/**",
