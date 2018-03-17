@@ -1,11 +1,13 @@
 package com.ljwm.bootbase.exception;
 
 import com.ljwm.bootbase.enums.ResultEnum;
+import lombok.Data;
 
 /**
  * 后台服务逻辑异常
  * Created by yuzhou on 2018/3/14.
  */
+@Data
 public class LogicException extends RuntimeException {
 
   private Integer code;
