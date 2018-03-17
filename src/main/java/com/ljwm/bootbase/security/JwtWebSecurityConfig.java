@@ -1,5 +1,8 @@
 package com.ljwm.bootbase.security;
 
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ReUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Arrays;
+
 /**
  * JKhaled created by yunqisong@foxmail.com 2017/11/21
  * FOR :  Spring-Security 和 jwt 联合配置
@@ -32,6 +37,9 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Value("${jwt.route.authentication.path}")
   private String authPath;
+
+  @Value("${jwt.route.freeRouters}")
+  private String freeRouters;
 
   /**
    * 转载Bcrypt密码解码器
@@ -103,9 +111,8 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(WebSecurity web) throws Exception {
     log.debug("Configure web security");
-    // 允许对静态资源的访问
-    web.ignoring().antMatchers("/**/favicon.ico",
-      "/auth/login",
+    String[] frees = new String[]{
+      "/**/favicon.ico",
       "/socket/**",
       "/swagger-ui.html/**",
       "/swagger-resources/**",
@@ -116,12 +123,24 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
       "/favicon.ico",
       "/**/*.html",
       "/**/*.css",
-      "/**/*.js");
+      "/**/*.js"
+    };
+    if (StrUtil.isNotBlank(freeRouters)) {
+      String[] freeConfigRouters = freeRouters.split(ReUtil.escape(","));
+      frees = ArrayUtil.addAll(frees, freeConfigRouters);  // 数组相加
+    }
+    // 允许对静态资源的访问
+    web.ignoring().antMatchers(frees);
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     log.debug("Configure http security");
+    String[] frees = new String[]{};
+    if (StrUtil.isNotBlank(freeRouters)) {
+      String[] freeConfigRouters = freeRouters.split(ReUtil.escape(","));
+      frees = ArrayUtil.addAll(frees, freeConfigRouters);  // 数组相加
+    }
     http
       // 由于使用的是JWT, 不需要csrf 跨域攻击拦截
       .csrf().disable()
@@ -133,7 +152,7 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .authorizeRequests()
       // 对于获取token的rest api要允许匿名访问
-      .antMatchers("/auth/login").permitAll()
+      .antMatchers(frees).permitAll()
       // 除上面外的所有请求全部需要监权认证
       .anyRequest().authenticated();
     // 添加 JWT filter
