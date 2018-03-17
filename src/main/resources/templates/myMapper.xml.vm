@@ -33,7 +33,7 @@
     ${field.name},
 #end
 #foreach($field in ${table.fields})
-     ${field.name} #if($velocityCount != ${table.fields}.size()),#end
+     #if($velocityCount != 1),#end ${field.name}
 #end
 
     </sql>
