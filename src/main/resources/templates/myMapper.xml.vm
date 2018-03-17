@@ -32,7 +32,10 @@
 #foreach($field in ${table.commonFields})
     ${field.name},
 #end
-        ${table.fields}
+#foreach($field in ${table.fields})
+    #if($velocityCount == 0) ${field.name} #end #if($velocityCount !=0) ,${field.name} #end
+#end
+
     </sql>
 
 #end
