@@ -34,8 +34,8 @@
 #end
 #set ($i=0)
 #foreach($field in ${table.fields})
-      #set($i=$i+1)
       #if($i != 0),#end ${field.name}
+      #set($i=$i+1)
 #end
 
     </sql>
