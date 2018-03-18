@@ -40,9 +40,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
       SerializerFeature.WriteNullStringAsEmpty,      // null字符串 转化为""字符串
       SerializerFeature.WriteEnumUsingName           // 枚举转 调用 name() 而不是toString
     );
-    SerializeConfig serializeConfig = new SerializeConfig();
-    serializeConfig.put(BigDecimal.class, new MoneySerializer());
-    fastJsonConfig.setSerializeConfig(serializeConfig);
     //在转换器中添加配置信息
     fastConverter.setFastJsonConfig(fastJsonConfig);
     //将转换器添加到converters中
