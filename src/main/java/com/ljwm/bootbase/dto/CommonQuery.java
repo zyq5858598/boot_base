@@ -17,6 +17,9 @@ public class CommonQuery implements Serializable {
   @ApiModelProperty("模糊查询参数")
   private String text;
 
+  @ApiModelProperty("正序: true 倒序: false")
+  private Boolean asc;
+
   @ApiModelProperty("分页参数")
   private PageQuery page;
 }
