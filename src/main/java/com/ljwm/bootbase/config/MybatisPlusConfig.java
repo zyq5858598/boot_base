@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
@@ -36,6 +37,7 @@ import java.sql.SQLException;
 @Configuration
 @EnableConfigurationProperties(MybatisProperties.class)
 @ConfigurationProperties(prefix = "spring.datasource")
+@EqualsAndHashCode(callSuper = false)
 public class MybatisPlusConfig extends WebMvcConfigurerAdapter {
 
     private String url;

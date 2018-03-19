@@ -11,6 +11,7 @@ import java.io.Serializable;
  * JKhaled created by yunqisong@foxmail.com 2017/11/21
  * FOR : 获取当前基本信息工具类
  */
+@SuppressWarnings("unchecked")
 public class SecurityKit {
 
   /**
