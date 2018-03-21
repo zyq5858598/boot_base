@@ -41,7 +41,7 @@ dependencies {
   // system dependence
   compile 'org.projectlombok:lombok:1.16.20'
   compile 'com.alibaba:fastjson:1.2.46'
-  compile 'cn.hutool:hutool-all:4.0.6'
+  compile 'cn.hutool:hutool-all:4.0.8'
   // aop dependence
   compile 'org.springframework.boot:spring-boot-starter-aop'
 
