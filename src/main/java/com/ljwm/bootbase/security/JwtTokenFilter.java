@@ -51,6 +51,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String account = JwtKit.getUsernameFormToken(token);
         String loginType = JwtKit.getLoginTypeFormToken(token);
         LoginInfoHolder.setLoginType(loginType);
+        LoginInfoHolder.setExtInfo(JwtKit.getExtInfoFormToken(token));
         if (StrUtil.isNotBlank(account)) {
           // 从token中认证用户名
           IJwtAndSecurityAble userDetails = (IJwtAndSecurityAble) userDetailsServiceImpl.loadUserByUsername(account);
