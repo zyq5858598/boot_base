@@ -4,6 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * JKhaled created by yunqisong@foxmail.com 2017/11/21
@@ -31,4 +32,11 @@ public interface IJwtAndSecurityAble extends UserDetails {
    * @return
    */
   String getLoginType();
+
+  /**
+   * 存储在Token中的额外信息
+   *
+   * @return
+   */
+  Map<String, String> extInfo();
 }

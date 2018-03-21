@@ -166,7 +166,7 @@ public class JwtKit {
   public static Boolean validateToken(String token, IJwtAndSecurityAble iJwtAndSecurityAble) {
     Date created = getCreatedFormToken(token);
 
-    return ! isTokenExpired(token) &&    // 确保 Token没有过期  如果   userDetails.getLastModifyPassTime() == null  为当前时间
+    return !isTokenExpired(token) &&    // 确保 Token没有过期  如果   userDetails.getLastModifyPassTime() == null  为当前时间
       (iJwtAndSecurityAble.getLastModifyPasswordTime() != null && iJwtAndSecurityAble.getLastModifyPasswordTime().before(created)); // 确保创建修改密码时间在这token创建之前
   }
 
@@ -184,6 +184,7 @@ public class JwtKit {
         Kv.by(CLAIM_KEY_USERNAME, iJwtAndSecurityAble.getUsername())
           .set(CLAIM_KEY_CREATED, DateUtil.date())
           .set(LOGIN_TYPE, iJwtAndSecurityAble.getLoginType())
+          .set(iJwtAndSecurityAble.extInfo())   // 填充额外信息
       )
       .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
       .signWith(SignatureAlgorithm.HS512, secret)
