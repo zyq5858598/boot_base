@@ -128,6 +128,22 @@ public class JwtKit {
     return expiration;
   }
 
+  public static Map<String, String> getExtInfoFormToken(String token) {
+
+    Map<String, String> expiration = Kv.create();
+    try {
+      Claims claims = getClaimsFromToken(token);
+      for (String k : claims.keySet()) {
+        if (!k.equals(CLAIM_KEY_USERNAME) && !k.equals(LOGIN_TYPE) && !k.equals(CLAIM_KEY_CREATED)) {
+          expiration.put(k, (String) claims.get(k));
+        }
+      }
+    } catch (Exception e) {
+      expiration = Kv.create();
+    }
+    return expiration;
+  }
+
   /**
    * 获取Token的创建时间
    *
