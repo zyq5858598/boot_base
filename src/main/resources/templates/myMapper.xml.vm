@@ -30,11 +30,11 @@
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
 #foreach($field in ${table.commonFields})
-    ${field.name},
+    `${field.name}`,
 #end
 #set ($i=0)
 #foreach($field in ${table.fields})
-          #if($i != 0),${field.name}#else${field.name}#end
+          #if($i != 0),`${field.name}`#else`${field.name}`#end
           #set($i=$i+1)
 #end
 
