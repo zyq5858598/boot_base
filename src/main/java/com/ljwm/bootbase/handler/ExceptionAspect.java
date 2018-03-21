@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,13 @@ public class ExceptionAspect {
   public Result handleLogicException(LogicException e) {
     log.warn("Logic Exception occur: {}", e.getMessage());
     return Result.fail(e);
+  }
+
+  @org.springframework.web.bind.annotation.ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+  @ResponseBody
+  public Result handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+    log.warn("Logic Exception occur: {}", e.getMessage());
+    return Result.fail(e.getMessage().contains("POST") ? ResultEnum.METHOD_ERROR_POST : ResultEnum.METHOD_ERROR_GET);
   }
 
   @org.springframework.web.bind.annotation.ExceptionHandler(value = HttpMessageNotReadableException.class)
