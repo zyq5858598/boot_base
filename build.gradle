@@ -44,6 +44,8 @@ dependencies {
   compile 'cn.hutool:hutool-all:4.0.8'
   // aop dependence
   compile 'org.springframework.boot:spring-boot-starter-aop'
+  // OSS dependence
+  compile('com.aliyun.oss:aliyun-sdk-oss:3.0.0')
 
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
