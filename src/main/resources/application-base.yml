@@ -35,6 +35,6 @@ oss: # 静态文件所在阿里云存储配置
   endpoint: http://oss-cn-hangzhou.aliyuncs.com
   accessKeyId: LTAIQBfXQSYYIedC
   accessKeySecret: 4AllJs8lHE5shyDdkQ4h3GW3nlZQgw
-  bucket: upload/test
+  bucket: mhs-test
   bucketUrl: http://mhs.1322.com/upload/test/
   rootPath: mhs/
