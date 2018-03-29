@@ -6,6 +6,7 @@ import com.ljwm.bootbase.exception.LogicException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,6 +28,13 @@ public class ExceptionAspect {
   public Result handleLogicException(LogicException e) {
     log.warn("Logic Exception occur: {}", e.getMessage());
     return Result.fail(e);
+  }
+
+  @org.springframework.web.bind.annotation.ExceptionHandler(value = LockedException.class)
+  @ResponseBody
+  public Result handleLockedException(LockedException e) {
+    log.warn("Logic Exception occur: {}", e.getMessage());
+    return Result.fail("账号已被禁用!");
   }
 
   @org.springframework.web.bind.annotation.ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
