@@ -75,14 +75,18 @@ public class ExceptionAspect {
   @org.springframework.web.bind.annotation.ExceptionHandler(value = AccessDeniedException.class)
   @ResponseBody
   public Result handleAccessDeniedException(AccessDeniedException e) throws AccessDeniedException {
+    log.info("权限验证异常 ！\n {}", e);
     throw e;
   }
 
 
   @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
   @ResponseBody
-  public Result handleException(Exception e) {
-
+  public Result handleException(Exception e) throws Exception {
+    if (e instanceof AccessDeniedException) {
+      log.info("权限验证异常 ！\n {}", e);
+      throw e;
+    }
     return Result.fail(ResultEnum.UNKNOWN_ERROR.getCode(), "系统异常!");
   }
 }
