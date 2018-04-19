@@ -5,6 +5,7 @@ import com.ljwm.bootbase.enums.ResultEnum;
 import com.ljwm.bootbase.exception.LogicException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,8 +13,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.nio.file.AccessDeniedException;
 
 /**
  * JKhaled created by yunqisong@foxmail.com 2017/11/21
@@ -72,20 +71,13 @@ public class ExceptionAspect {
     return Result.fail(ResultEnum.DATA_ERROR.getCode(), e.getBindingResult().getFieldError().getDefaultMessage());
   }
 
-  @org.springframework.web.bind.annotation.ExceptionHandler(value = AccessDeniedException.class)
-  @ResponseBody
-  public Result handleAccessDeniedException(AccessDeniedException e) throws AccessDeniedException {
-    log.info("权限验证异常 ！\n {}", e);
-    throw e;
-  }
-
 
   @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
   @ResponseBody
   public Result handleException(Exception e) throws Exception {
     if (e instanceof AccessDeniedException) {
       log.info("权限验证异常 ！\n {}", e);
-      throw e;
+      throw  e;
     }
     return Result.fail(ResultEnum.UNKNOWN_ERROR.getCode(), "系统异常!");
   }
