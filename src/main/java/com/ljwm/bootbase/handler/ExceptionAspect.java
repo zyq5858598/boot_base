@@ -72,14 +72,17 @@ public class ExceptionAspect {
     return Result.fail(ResultEnum.DATA_ERROR.getCode(), e.getBindingResult().getFieldError().getDefaultMessage());
   }
 
+  @org.springframework.web.bind.annotation.ExceptionHandler(value = AccessDeniedException.class)
+  @ResponseBody
+  public Result handleAccessDeniedException(AccessDeniedException e) throws AccessDeniedException {
+    throw e;
+  }
+
 
   @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
   @ResponseBody
-  public Result handleException(Exception e) throws AccessDeniedException {
-    if (e instanceof AccessDeniedException) { // 权限访问异常不拦截
-      throw (AccessDeniedException) e;
-    }
-    log.error("Unknown Exception occur", e);
+  public Result handleException(Exception e) {
+
     return Result.fail(ResultEnum.UNKNOWN_ERROR.getCode(), "系统异常!");
   }
 }
