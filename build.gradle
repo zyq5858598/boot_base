@@ -12,13 +12,30 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 
-repositories {
-  // mavenLocal()
-  maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+publishing {
+  publications {
+    maven(MavenPublication) {
+      groupId project.group
+      artifactId project.name
+      version project.version
+      // 若是war包，就写components.web,若是jar包，就写components.java
+      from components.java
+    }
+  }
+  repositories {
+    maven {
+      url = "http://192.168.8.178:27077/nexus/content/groups/public/"
+      credentials {
+        username 'admin'
+        password 'admin123'
+      }
+    }
+  }
 }
 
 dependencies {
@@ -49,3 +66,4 @@ dependencies {
 
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
+
