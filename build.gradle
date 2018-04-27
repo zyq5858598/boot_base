@@ -1,21 +1,30 @@
 buildscript {
+  group "com.ljwm"
+  version "1.0-RELEASE"
+
   ext {
-    springBootVersion = '1.5.12.RELEASE'
+    springBootVersion = "1.5.12.RELEASE"
   }
   repositories {
     mavenLocal()
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    maven { url "http://192.168.8.178:27077/nexus/content/groups/public/" }
+    maven { url "http://maven.1322.com/nexus/content/groups/public/" }
   }
 }
 
-apply plugin: 'java'
-apply plugin: 'maven-publish'
-apply plugin: 'org.springframework.boot'
+tasks.withType(JavaCompile){
+  options.encoding = "UTF-8"
+}
 
+apply plugin: "java"
+apply plugin: "maven-publish"
 sourceCompatibility = 1.8
+
+repositories {
+  mavenLocal()
+  maven { url "http://192.168.8.178:27077/nexus/content/groups/public/" }
+  maven { url "http://maven.1322.com/nexus/content/groups/public/" }
+}
 
 publishing {
   publications {
@@ -29,10 +38,10 @@ publishing {
   }
   repositories {
     maven {
-      url = "http://192.168.8.178:27077/nexus/content/groups/public/"
+      url = "http://maven.1322.com/nexus/content/repositories/releases/"
       credentials {
-        username 'admin'
-        password 'admin123'
+        username "admin"
+        password "admin123"
       }
     }
   }
@@ -40,30 +49,30 @@ publishing {
 
 dependencies {
   // web dependence
-  compile 'org.springframework.boot:spring-boot-starter-web'
-  compile 'javax.servlet:javax.servlet-api:4.0.0'
+  compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+  compile "javax.servlet:javax.servlet-api:4.0.0"
   // db dependence
-  compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1'
-  compile 'com.baomidou:mybatisplus-spring-boot-starter:1.0.5'
-  compile 'org.springframework.boot:spring-boot-starter-jdbc'
-  compile 'com.baomidou:mybatis-plus:2.1.9'
-  compile 'mysql:mysql-connector-java'
-  compile 'com.alibaba:druid:1.1.6'
+  compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1"
+  compile "com.baomidou:mybatisplus-spring-boot-starter:1.0.5"
+  compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+  compile "com.baomidou:mybatis-plus:2.1.9"
+  compile "mysql:mysql-connector-java:5.1.40"
+  compile "com.alibaba:druid:1.1.6"
   // security dependence
-  compile 'org.springframework.boot:spring-boot-starter-security'
-  compile 'io.jsonwebtoken:jjwt:0.9.0'
+  compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+  compile "io.jsonwebtoken:jjwt:0.9.0"
   // document dependence
-  compile 'io.springfox:springfox-swagger-ui:2.7.0'
-  compile 'io.springfox:springfox-swagger2:2.7.0'
+  compile "io.springfox:springfox-swagger-ui:2.7.0"
+  compile "io.springfox:springfox-swagger2:2.7.0"
   // system dependence
-  compile 'org.projectlombok:lombok:1.16.20'
-  compile 'com.alibaba:fastjson:1.2.46'
-  compile 'cn.hutool:hutool-all:4.0.9'
+  compile "org.projectlombok:lombok:1.16.20"
+  compile "com.alibaba:fastjson:1.2.46"
+  compile "cn.hutool:hutool-all:4.0.9"
   // aop dependence
-  compile 'org.springframework.boot:spring-boot-starter-aop'
+  compile "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}"
   // OSS dependence
-  compile('com.aliyun.oss:aliyun-sdk-oss:3.0.0')
+  compile("com.aliyun.oss:aliyun-sdk-oss:3.0.0")
 
-  testCompile 'org.springframework.boot:spring-boot-starter-test'
+  testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 }
 
