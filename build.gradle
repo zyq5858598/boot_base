@@ -1,6 +1,6 @@
 buildscript {
   group "com.ljwm"
-  version "1.0-RELEASE"
+  version "1.2.0-RELEASE"
 
   ext {
     springBootVersion = "1.5.12.RELEASE"
@@ -12,7 +12,7 @@ buildscript {
   }
 }
 
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
   options.encoding = "UTF-8"
 }
 

@@ -5,6 +5,7 @@ import com.ljwm.bootbase.dto.Kv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.Map;
  * FOR : JWT Token构造工具
  */
 @SuppressWarnings("unchecked")
+@Slf4j
 public class JwtKit {
   /**
    * 构造函数私有化
@@ -134,11 +136,13 @@ public class JwtKit {
     try {
       Claims claims = getClaimsFromToken(token);
       for (String k : claims.keySet()) {
-        if (!k.equals(CLAIM_KEY_USERNAME) && !k.equals(LOGIN_TYPE) && !k.equals(CLAIM_KEY_CREATED)) {
-          expiration.put(k, (String) claims.get(k));
+        if (!k.equals(CLAIM_KEY_USERNAME) && !k.equals(LOGIN_TYPE) && !k.equals(CLAIM_KEY_CREATED) &&  claims.get(k) != null) {
+          log.info("变量 :{}  值:{}",k,String.valueOf(claims.get(k)));
+          expiration.put(k, String.valueOf(claims.get(k)));
         }
       }
     } catch (Exception e) {
+      log.info("Token转化错误!\n {}",e);
       expiration = Kv.create();
     }
     return expiration;

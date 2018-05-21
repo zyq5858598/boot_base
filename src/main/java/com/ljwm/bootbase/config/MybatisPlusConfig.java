@@ -1,10 +1,12 @@
 package com.ljwm.bootbase.config;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.MybatisConfiguration;
 import com.baomidou.mybatisplus.MybatisXMLLanguageDriver;
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.enums.DBType;
+import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
@@ -43,6 +45,8 @@ import java.util.Collections;
 public class MybatisPlusConfig extends WebMvcConfigurerAdapter {
 
   private String url;
+
+  private String dbType;
 
   private String password;
 
@@ -88,7 +92,9 @@ public class MybatisPlusConfig extends WebMvcConfigurerAdapter {
     dataSource.setTestOnBorrow(false);
     dataSource.setTestWhileIdle(true);
     dataSource.setPoolPreparedStatements(false);
-    dataSource.setConnectionInitSqls(Lists.newArrayList("set names utf8mb4;"));
+    if (StrUtil.isBlank(dbType)) {
+      dataSource.setConnectionInitSqls(Lists.newArrayList("set names utf8mb4;"));
+    }
     return dataSource;
   }
 
@@ -99,7 +105,8 @@ public class MybatisPlusConfig extends WebMvcConfigurerAdapter {
   @Bean
   public PaginationInterceptor paginationInterceptor() {
     PaginationInterceptor page = new PaginationInterceptor();
-    page.setDialectType("mysql");
+
+    page.setDialectType(StrUtil.isBlank(dbType) ? DBType.MYSQL.name() : dbType);
     return page;
   }
 
@@ -123,7 +130,7 @@ public class MybatisPlusConfig extends WebMvcConfigurerAdapter {
     }
     // MP 全局配置，更多内容进入类看注释
     GlobalConfiguration globalConfig = new GlobalConfiguration();
-    globalConfig.setDbType(DBType.MYSQL.name());
+    globalConfig.setDbType(StrUtil.isBlank(dbType) ? DBType.MYSQL.name() : dbType);
     // ID 策略 AUTO->`0`("数据库ID自增") INPUT->`1`(用户输入ID") ID_WORKER->`2`("全局唯一ID") UUID->`3`("全局唯一ID")
     globalConfig.setIdType(0);
     mybatisPlus.setGlobalConfig(globalConfig);
