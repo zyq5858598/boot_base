@@ -27,3 +27,6 @@
  -  @EnableAspectJAutoProxy(proxyTargetClass = true)                            // 允许使用自定义JDK代理切面
  -  @EnableTransactionManagement                                                // 开启事务
  -  @ServletComponentScan
+
+- 这是使用BootBase的样例Demo，具体配置参照该项目
+- https://gitee.com/Yunqisong/BootBaseDemo.git
