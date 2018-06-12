@@ -31,6 +31,7 @@ jwt:
       path: auth
       refresh: refresh
       register: "auth/register"
+    freeRouters:
 oss: # 静态文件所在阿里云存储配置
   endpoint: http://oss-cn-hangzhou.aliyuncs.com
   accessKeyId: LTAIQBfXQSYYIedC
