@@ -1,3 +1,5 @@
+spring:
+  http.converters.preferred-json-mapper: fastjson
 logging:
   level:
     org.springframework:
