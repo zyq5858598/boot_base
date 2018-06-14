@@ -3,7 +3,7 @@ buildscript {
   version "1.2.0-RELEASE"
 
   ext {
-    springBootVersion = "1.5.12.RELEASE"
+    springBootVersion = "1.5.13.RELEASE"
   }
   repositories {
     mavenLocal()
