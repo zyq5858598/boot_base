@@ -122,7 +122,8 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
       "/favicon.ico",
       "/**/*.html",
       "/**/*.css",
-      "/**/*.js"
+      "/**/*.js",
+      "/**/*.map"
     };
     if (StrUtil.isNotBlank(freeRouters)) {
       String[] freeConfigRouters = freeRouters.split(ReUtil.escape(","));
