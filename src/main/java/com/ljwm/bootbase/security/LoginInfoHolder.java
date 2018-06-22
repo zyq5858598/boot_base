@@ -21,7 +21,7 @@ public class LoginInfoHolder {
   private static final ThreadLocal<Map<String, String>> currentUserExtInfoHolder = new ThreadLocal<>();
 
   public static void setSalt(String salt) {
-    log.debug("当前用户的salt", salt);
+    log.debug("当前用户的salt: {}", salt);
     passwordHolder.set(salt);
   }
 
@@ -30,7 +30,7 @@ public class LoginInfoHolder {
   }
 
   public static void setLoginType(String loginType) {
-    log.debug("当前用户的登陆类型", loginType);
+    log.debug("当前用户的登陆类型: {}", loginType);
     loginTypeHolder.set(loginType);
   }
 
