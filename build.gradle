@@ -1,6 +1,6 @@
 buildscript {
   group "com.ljwm"
-  version "1.2.0-RELEASE"
+  version "1.2.2-RELEASE"
 
   ext {
     springBootVersion = "1.5.13.RELEASE"
