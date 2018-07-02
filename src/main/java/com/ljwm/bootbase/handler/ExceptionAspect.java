@@ -79,6 +79,7 @@ public class ExceptionAspect {
       log.info("权限验证异常 ！\n {}", e);
       throw  e;
     }
+    log.error("Uncertain exception occur: {}", e.getMessage(), e);
     return Result.fail(ResultEnum.UNKNOWN_ERROR.getCode(), "系统异常!");
   }
 }
