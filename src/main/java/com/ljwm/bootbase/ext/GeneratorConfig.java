@@ -1,6 +1,7 @@
 package com.ljwm.bootbase.ext;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.ljwm.bootbase.exception.LogicException;
 import com.ljwm.bootbase.kit.PathKit;
 import lombok.Builder;
@@ -32,6 +33,8 @@ public class GeneratorConfig {
   private String username;                              // JDBC数据库用户名: 必传参数
 
   private String basePackage;                           // 项目的基本包名，如:com.ljwm.asmshop : 必传参数
+
+  private IdType idType;
 
   @Builder.Default
   private Boolean created = false;                      // 建造还是更新: 建造会创建Mapper，更新只更新Model和XML

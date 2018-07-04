@@ -1,6 +1,7 @@
 package com.ljwm.bootbase.ext;
 
 import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -55,6 +56,7 @@ public class MyGenerator extends AutoGenerator {
     AutoGenerator mpg = new MyGenerator(strategyConfig).setGlobalConfig(
       // 全局配置
       new GlobalConfig()
+        .setIdType(generatorConfig.getIdType() == null ? IdType.AUTO : generatorConfig.getIdType())// 生成ID的策略
         .setOutputDir(generatorConfig.getPath() + "src/main/java")//输出目录
         .setFileOverride(true)// 是否覆盖文件
         .setActiveRecord(true)// 开启 activeRecord 模式
