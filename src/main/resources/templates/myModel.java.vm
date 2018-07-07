@@ -23,6 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 #if(${entityLombokModel})
 @Data
+@SuppressWarnings("ALL")
 #if(${superEntityClass})
 @EqualsAndHashCode(callSuper = true)
 #end
