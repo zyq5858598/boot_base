@@ -1,6 +1,6 @@
 buildscript {
   group "com.ljwm"
-  version "1.4.1-RELEASE"
+  version "1.4.2-RELEASE"
 
   ext {
     springBootVersion = "1.5.14.RELEASE"
@@ -93,6 +93,7 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
   compile "com.baomidou:mybatis-plus:2.3"
   compile "mysql:mysql-connector-java:5.1.40"
+  compile 'org.apache.velocity:velocity:1.7'
   compile "com.alibaba:druid:1.1.6"
   // security dependence
   compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
